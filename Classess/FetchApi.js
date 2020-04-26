@@ -1,9 +1,9 @@
-function fetchApi(serverUrl){
-  this.serverUrl = serverUrl;
+function FetchApi(apiUrl){
+  this.apiUrl = apiUrl;
 }
 
-fetchApi.prototype.getGamesList = function() {
-    return fetch(`${this.serverUrl}/games`,{
+FetchApi.prototype.getGamesList = function() {
+    return fetch(`${this.apiUrl}/games`,{
         method: "GET",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -18,8 +18,9 @@ fetchApi.prototype.getGamesList = function() {
    
 }
 
-fetchApi.prototype.deleteGame = function (gameID) {
-    return fetch(`${this.serverUrl}/games/${gameID}`,{
+
+FetchApi.prototype.deleteGame = function (gameID) {
+    return fetch(`${this.apiUrl}/games/${gameID}`,{
         method: "DELETE",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -33,8 +34,8 @@ fetchApi.prototype.deleteGame = function (gameID) {
 
 }
 
-fetchApi.prototype.createGameRequest = function(gameObject) {
-    return fetch(`${this.serverUrl}/games`, {
+FetchApi.prototype.createGameRequest = function(gameObject) {
+    return fetch(`${this.apiUrl}/games`, {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -48,8 +49,8 @@ fetchApi.prototype.createGameRequest = function(gameObject) {
     // });
 }
 
-fetchApi.prototype.updateGameRequest = function(gameId, updateGameObj) {
-    return fetch(`${this.serverUrl}/games/${gameId}`, {
+FetchApi.prototype.updateGameRequest = function(gameId, updateGameObj) {
+    return fetch(`${this.apiUrl}/games/${gameId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -58,7 +59,7 @@ fetchApi.prototype.updateGameRequest = function(gameId, updateGameObj) {
     }).then(function(response){
         return response.json();
     })
-    // .catch(function(error){
+//     // .catch(function(error){
     //     console.log('An error has occured:', error);
     // });
 }

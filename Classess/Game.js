@@ -6,6 +6,7 @@ function Game(id, title, imageUrl, description) {
 }
 
 Game.prototype.render = function(){
+    var container = document.querySelector('.container');
     const gameELement = document.createElement("div");
     gameELement.setAttribute("id", this._id);
     gameELement.innerHTML = `<h1>${this.title}</h1> 
@@ -14,5 +15,5 @@ Game.prototype.render = function(){
                         <button class="delete-btn" id="${this._id}">Delete</button>
                         <button class="update-btn" id="${this._id}">Edit Game</button>`; 
 
-        return gameELement;
+        
 }
