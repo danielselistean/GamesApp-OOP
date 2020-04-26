@@ -1,65 +1,82 @@
-function FetchApi(apiUrl){
-  this.apiUrl = apiUrl;
+function FetchApi(apiURL) {
+    this.apiURL = apiURL;
 }
 
-FetchApi.prototype.getGamesList = function() {
-    return fetch(`${this.apiUrl}/games`,{
-        method: "GET",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    }).then(function(response){
-        console.log(response);
-        return response.json();
-    })
-    // .catch(function(error){
-    //     console.log('An error has occured:', error);
-    // });
-   
-}
+   FetchApi.prototype.getGamesList =async function(){
+    try{
+        const response = await  fetch(`${this.apiURL}` + "/games", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+        });
+                console.log(response);
 
+        const arrayOfGames = await response.json();
+            return arrayOfGames;
 
-FetchApi.prototype.deleteGame = function (gameID) {
-    return fetch(`${this.apiUrl}/games/${gameID}`,{
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    }).then(function(response){
-        return response.text();
-    })
-    // .catch(function(error){
-    //     console.log('An error has occured:', error);
-    // });
+    } catch(errorMsg){
+        console.log("An error has occured: ", errorMsg);
+    }
 
 }
 
-FetchApi.prototype.createGameRequest = function(gameObject) {
-    return fetch(`${this.apiUrl}/games`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: gameObject
-    }).then(function(response){
-        return response.json();
-    })
-    // .catch(function(error){
-    //     console.log('An error has occured:', error);
-    // });
+
+ FetchApi.prototype.deleteGame = async function(gameID){
+    try{
+        const response = await  fetch(`${this.apiURL}` + "/games/" + gameID, {
+                    method: "DELETE",
+                     headers: {
+                     "Content-Type": "application/x-www-form-urlencoded"
+                     }
+        });
+                console.log(response);
+
+        const apiresponse = await response.text();
+        console.log(apiresponse);
+            return apiresponse;
+
+    }catch(errorMsg){
+        console.log("An error has occured: ", errorMsg);
+    }
 }
 
-FetchApi.prototype.updateGameRequest = function(gameId, updateGameObj) {
-    return fetch(`${this.apiUrl}/games/${gameId}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: updateGameObj
-    }).then(function(response){
-        return response.json();
-    })
-//     // .catch(function(error){
-    //     console.log('An error has occured:', error);
-    // });
+
+ FetchApi.prototype.createGameRequest = async function(gameObject){
+    try{
+        const response = await fetch(`${this.apiURL}` + "/games", {
+                    method: "POST",
+                    headers: {
+                         "Content-Type": "application/x-www-form-urlencoded"
+                     },
+                    body: gameObject
+        });
+
+        const createdGame = await response.json();
+        console.log(createdGame);
+            return createdGame;
+
+    }catch(errorMsg){
+        console.log("An error has occured: ", errorMsg);
+    }
+}
+
+
+ FetchApi.prototype.updateGameRequest = async function(gameID, updatedGameObject){
+    try{
+        const response = await fetch(`${this.apiURL}` + "/games/" + gameID, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: updatedGameObject
+        });
+
+        const updatedGame = await response.json();
+        console.log(updatedGame);
+            return updatedGame;
+
+    }catch(errorMsg){
+        console.log("An error has occured: ", errorMsg);
+    }    
 }
