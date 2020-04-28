@@ -30,7 +30,6 @@ function FetchApi(apiURL) {
                      "Content-Type": "application/x-www-form-urlencoded"
                      }
         });
-                console.log(response);
 
         const apiresponse = await response.text();
             return apiresponse;

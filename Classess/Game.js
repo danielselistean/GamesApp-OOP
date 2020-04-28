@@ -34,14 +34,7 @@ Game.prototype.createDomElement = function(){
         } else if(event.target.classList.contains('update-btn')){
   
         gameELement.appendChild(updateGameElement);
-
-        }else if(event.target.classList.contains('cancelBtn')){
-            removeDeletedElementFromDOM(updateGameElement);
-
-        }else if(event.target.classList.contains('updateBtn')){
-            newDomElement(gameELement);
-            console.log(gameELement);
-            removeDeletedElementFromDOM(updateGameElement);
+        
         }
   
     });
