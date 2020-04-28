@@ -33,7 +33,6 @@ function FetchApi(apiURL) {
                 console.log(response);
 
         const apiresponse = await response.text();
-        console.log(apiresponse);
             return apiresponse;
 
     }catch(errorMsg){

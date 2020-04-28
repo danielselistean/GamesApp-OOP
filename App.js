@@ -49,7 +49,7 @@ getGames();
   
   //Adaugam functionalitate pe butonul de submit;
   
-  document.querySelector(".submitBtn").addEventListener("click", async function(event){
+  document.querySelector(".submitBtn").addEventListener("click", function(event){
     event.preventDefault();
   
     //colectam datele din Form (create form);
@@ -84,7 +84,8 @@ getGames();
        
         async function createGame(){
           const game = await fetchApi.createGameRequest(urlencoded);
-          createDomElement(game);
+          const newGame = new Game(game._id, game.title, game.imageUrl, game.description);
+          newGame.createDomElement(game);
         }
         createGame();
     }
